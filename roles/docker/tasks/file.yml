@@ -1,0 +1,25 @@
+---
+- name: Copy Docker files
+  copy:
+    src: "{{ item }}"
+    dest: /usr/bin/
+    mode: 0755
+  with_items:
+    - "{{ docker_files }}"
+
+- name: Create daemon.json Directory
+  file:
+    name: /etc/docker/
+    state: directory
+
+- name: Copy daemon.json
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+
+- name: Create docker.service
+  copy:
+    src: docker.service
+    dest: /usr/lib/systemd/system/docker.service
+  notify:
+    - Restart Docker

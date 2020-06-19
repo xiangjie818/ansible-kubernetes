@@ -1,0 +1,10 @@
+---
+docker_files:
+  - containerd
+  - containerd-shim
+  - ctr
+  - docker
+  - dockerd
+  - docker-init
+  - docker-proxy
+  - runc

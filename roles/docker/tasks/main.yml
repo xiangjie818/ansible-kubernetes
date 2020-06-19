@@ -1,0 +1,3 @@
+---
+- name: Include file.yml
+  include_tasks: file.yml
