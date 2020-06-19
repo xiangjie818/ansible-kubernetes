@@ -1,0 +1,23 @@
+---
+- name: Install Chrony
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ packages }}"
+ 
+- name: Template Server ntp.conf
+  template: src=ntp_server.conf.j2 dest=/etc/ntp.conf
+  delegate_to: "{{ ntp_server }}"
+  notify:
+    - Restart ntpd
+  when:
+    - ntp_server is defined
+
+- name: Template Clients ntp.conf
+  template: src=ntp_client.conf.j2 dest=/etc/ntp.conf
+  delegate_to: "{{ item }}"
+  with_items:
+    - "{{ ntp_clients }}"
+  notify:
+    - Restart ntpd
