@@ -1,0 +1,21 @@
+---
+# The server of clock
+ntp_server: 172.16.0.10
+ntp_network: 172.16.0.0
+ntp_mask: 255.255.0.0
+
+# The clients of clock
+ntp_clients: 
+    - 172.16.0.11
+    - 172.16.0.12
+#    - mon2
+#    - mon3
+#S3 User
+uid: admin
+display_name: admin
+radosgw_port: 8080
+s3_gateway: 172.16.0.10
+ceph_exporter: 172.16.0.10
+instance_name: ceph测试集群
+# access_key: 123456
+# secret_key: 123456
