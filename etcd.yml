@@ -1,0 +1,6 @@
+---
+  - hosts: dockers
+    gather_facts: True
+    become: True
+    roles:
+      - etcd

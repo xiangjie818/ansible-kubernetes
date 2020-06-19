@@ -1,0 +1,28 @@
+name: {{ ansible_nodename }}
+data-dir: /var/lib/etcd/default.etcd
+listen-peer-urls: https://{{ ansible_all_ipv4_addresses[1] }}:2380
+listen-client-urls: https://{{ ansible_all_ipv4_addresses[1] }}:2379,https://127.0.0.1:2379
+
+advertise-client-urls: https://{{ ansible_all_ipv4_addresses[1] }}:2379
+initial-advertise-peer-urls: https://{{ ansible_all_ipv4_addresses[1] }}:2380
+initial-cluster: {{ etcd_cluster }}
+initial-cluster-token: etcd-cluster
+initial-cluster-state: new
+
+client-transport-security:
+  cert-file: /opt/kubernetes/ssl/server.pem
+  key-file: /opt/kubernetes/ssl/server-key.pem
+  client-cert-auth: false
+  trusted-ca-file: /opt/kubernetes/ssl/ca.pem
+  auto-tls: false
+
+peer-transport-security:
+  cert-file: /opt/kubernetes/ssl/server.pem
+  key-file: /opt/kubernetes/ssl/server-key.pem
+  client-cert-auth: false
+  trusted-ca-file: /opt/kubernetes/ssl/ca.pem
+  auto-tls: false
+
+debug: false
+logger: zap
+log-outputs: [stderr]

@@ -1,0 +1,39 @@
+---
+- name: 创建kubernetes目录
+  file:
+    name: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/kubernetes/bin/
+    - /opt/kubernetes/cfg/
+    - /opt/kubernetes/ssl/
+
+- name: 添加etcd程序文件
+  copy:
+    src: "{{ item }}"
+    dest: /opt/kubernetes/bin/
+    mode: 0755
+  with_items:
+    - etcd
+    - etcdctl
+
+- name: 确认PATH变量
+  raw: cat /etc/profile
+  register: etc_profile
+
+- name: 添加程序目录到PATH变量
+  raw: "echo 'export PATH=$PATH:/opt/kubernetes/bin' >> /etc/profile"
+  when:
+    - "'kubernetes' not in etc_profile.stdout"
+  notify: 
+    - Source /etc/profile
+
+- name: 配置etcd
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: etcd.yml.j2, dest: /opt/kubernetes/cfg/etcd.yml }
+    - { src: etcd.service.j2, dest: /usr/lib/systemd/system/etcd.service }
+  notify:
+    - Restart etcd

@@ -1,0 +1,10 @@
+---
+- name: Source /etc/profile
+  raw: source /etc/profile
+
+- name: Restart etcd
+  systemd:
+    name: etcd
+    state: restarted
+    daemon_reload: yes
+    enabled: yes

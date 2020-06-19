@@ -1,0 +1,2 @@
+---
+etcd_cluster: master.zxj.com=https://192.168.3.101:2380,node1.zxj.com=https://192.168.3.102:2380,node2.zxj.com=https://192.168.3.103:2380
