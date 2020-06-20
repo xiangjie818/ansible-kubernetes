@@ -14,19 +14,17 @@
     - /tmp/docker/docker-proxy
     - /tmp/docker/runc
     
-- name: Create daemon.json Directory
+- name: 创建docker配置文件目录
   file:
     name: /etc/docker/
     state: directory
 
-- name: Copy daemon.json
-  copy:
-    src: /tmp/daemon.json
-    dest: /etc/docker/daemon.json
-
-- name: Create docker.service
-  copy:
-    src: /tmp/docker.service
-    dest: /usr/lib/systemd/system/docker.service
+- name: 生成docker服务文件
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: daemon.json.j2, dest: /etc/docker/daemon.json }
+    - { src: docker.service.j2, dest: /usr/lib/systemd/system/docker.service }
   notify:
     - Restart Docker

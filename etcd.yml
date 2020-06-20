@@ -1,5 +1,5 @@
 ---
-  - hosts: dockers
+  - hosts: etcds
     gather_facts: True
     become: True
     roles:

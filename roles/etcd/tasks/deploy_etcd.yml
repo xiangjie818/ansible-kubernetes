@@ -1,0 +1,19 @@
+---
+- name: 添加etcd程序文件
+  copy:
+    src: "/tmp/etcd-v3.4.7-linux-amd64/{{ item }}"
+    dest: /opt/kubernetes/bin/
+    mode: 0755
+  with_items:
+    - etcd
+    - etcdctl
+
+- name: 配置etcd
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: etcd.yml.j2, dest: /opt/kubernetes/cfg/etcd.yml }
+    - { src: etcd.service.j2, dest: /usr/lib/systemd/system/etcd.service }
+  notify:
+    - Restart etcd

@@ -1,6 +1,10 @@
 ---
 ssl_node: 192.168.3.100
 
+# Harbor
+harbor_url: http://ansible.zxj.com
+harbor_port: 5000
+
 # Packages site
 pkgs_site: http://pkgs.zxj.com
 pkgs_url: /kubernetes/linux-amd64
@@ -8,8 +12,13 @@ pkgs_url: /kubernetes/linux-amd64
 # Docker Packages
 docker_pkgs: docker-19.03.9.tar.gz
 
+# Etcd Packages
+etcd_pkgs: etcd-v3.4.7-linux-amd64.tar.gz
+
 # Kubernetes Packages
 k8s_version: 1.18.2
+k8s_pkgs: kubernetes-server-linux-amd64.tar.gz
+
 
 cluster_ip:
   - 192.168.3.101

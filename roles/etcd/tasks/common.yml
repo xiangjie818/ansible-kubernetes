@@ -1,0 +1,26 @@
+---
+- name: 创建kubernetes目录
+  file:
+    name: "{{ item }}"
+    state: directory
+  with_items:
+    - /opt/kubernetes/bin
+    - /opt/kubernetes/cfg/
+    - /opt/kubernetes/ssl/
+
+- name: 添加PATH变量
+  lineinfile:
+    dest: ~/.bashrc
+    state: present
+    regexp: 'export PATH='
+    line: 'export PATH=$PATH:/opt/kubernetes/bin'
+
+- name: 分发key
+  copy:
+    src: "/tmp/ssl/{{ item }}"
+    dest: /opt/kubernetes/ssl/
+  with_items:
+    - server.pem
+    - server-key.pem
+    - ca.pem
+    - ca-key.pem
