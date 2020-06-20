@@ -1,6 +1,16 @@
 ---
 ssl_node: 192.168.3.100
-cfssl_url: http://pkgs.zxj.com/kubernetes/linux-amd64/cfssl
+
+# Packages site
+pkgs_site: http://pkgs.zxj.com
+pkgs_url: /kubernetes/linux-amd64
+
+# Docker Packages
+docker_pkgs: docker-19.03.9.tar.gz
+
+# Kubernetes Packages
+k8s_version: 1.18.2
+
 cluster_ip:
   - 192.168.3.101
   - 192.168.3.102

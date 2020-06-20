@@ -4,5 +4,3 @@
     become: True
     roles:
       - docker
-      - cfssl
-      - etcd

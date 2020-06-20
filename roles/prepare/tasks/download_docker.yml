@@ -1,0 +1,12 @@
+---
+- name: 下载Docker程序文件
+  get_url:
+    url: "{{ item }}"
+    dest: /tmp/
+  with_items:
+    - '{{ pkgs_site }}{{ pkgs_url }}/{{ docker_pkgs }}'
+
+- name: 解压Docker程序包
+  unarchive:
+    src: "/tmp/{{ docker_pkgs }}"
+    dest: /tmp/

@@ -1,12 +1,19 @@
 ---
-- name: Copy Docker files
+- name: 生成docker程序文件
   copy:
     src: "{{ item }}"
     dest: /usr/bin/
     mode: 0755
   with_items:
-    - "{{ docker_files }}"
-
+    - /tmp/docker/containerd
+    - /tmp/docker/containerd-shim
+    - /tmp/docker/ctr
+    - /tmp/docker/docker
+    - /tmp/docker/dockerd
+    - /tmp/docker/docker-init
+    - /tmp/docker/docker-proxy
+    - /tmp/docker/runc
+    
 - name: Create daemon.json Directory
   file:
     name: /etc/docker/
@@ -14,12 +21,12 @@
 
 - name: Copy daemon.json
   copy:
-    src: daemon.json
+    src: /tmp/daemon.json
     dest: /etc/docker/daemon.json
 
 - name: Create docker.service
   copy:
-    src: docker.service
+    src: /tmp/docker.service
     dest: /usr/lib/systemd/system/docker.service
   notify:
     - Restart Docker

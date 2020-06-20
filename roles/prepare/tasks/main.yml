@@ -1,20 +1,6 @@
 ---
-- name: 下载cfssl程序文件
-  get_url: 
-    url: "{{ item.url }}"
-    dest: "{{ item.dest }}"
-    mode: 0755
-  with_items:
-    - { url: '{{ cfssl_url }}/cfssl_linux-amd64', dest: /usr/local/bin/cfssl }
-    - { url: '{{ cfssl_url }}/cfssl-certinfo_linux-amd64', dest: /usr/local/bin/cfssl-certinfo }
-    - { url: '{{ cfssl_url }}/cfssljson_linux-amd64', dest: /usr/local/bin/cfssljson }
-  delegate_to: "{{ ssl_node }}"
+- name: Include config_cfssl.yml
+  include_tasks: config_cfssl.yml
 
-- name: 生成创建证书的脚本
-  template:
-    src: cert.sh.j2
-    dest: /tmp/cert.sh
-    mode: 0755
-
-- name: 执行脚本创建证书
-  shell: /tmp/cert.sh
+- name: Include download_docker.yml
+  include_tasks: download_docker.yml

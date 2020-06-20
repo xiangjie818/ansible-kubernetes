@@ -5,3 +5,7 @@
 192.168.3.101
 192.168.3.102
 192.168.3.103
+
+[all:vars]
+ansible_ssh_user=root
+ansible_ssh_pass=123456
