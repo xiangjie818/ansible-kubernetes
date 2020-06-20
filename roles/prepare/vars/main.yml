@@ -1,7 +1,3 @@
 ---
 ssl_node: 192.168.3.100
 cfssl_url: http://pkgs.zxj.com/kubernetes/linux-amd64/cfssl
-cluster_ip:
-  - 192.168.3.101
-  - 192.168.3.102
-  - 192.168.3.103

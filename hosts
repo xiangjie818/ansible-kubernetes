@@ -1,5 +1,5 @@
-[ntps]
-172.16.3.1[0:5]
+[deploy]
+192.168.3.100 ansible_ssh_user=root ansible_ssh_pass=123456
 
 [dockers]
 192.168.3.101
