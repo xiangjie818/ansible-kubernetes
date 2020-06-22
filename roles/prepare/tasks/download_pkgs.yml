@@ -1,12 +1,16 @@
 ---
 - name: 下载程序包
   get_url:
-    url: "{{ item }}"
-    dest: /tmp/
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
   with_items:
-    - '{{ pkgs_site }}{{ pkgs_url }}/{{ docker_pkgs }}'
-    - '{{ pkgs_site }}{{ pkgs_url }}/{{ etcd_pkgs }}'
-    - '{{ pkgs_site }}{{ pkgs_url }}/{{ k8s_version }}/{{ k8s_pkgs }}'
+    - { url: '{{ pkgs_site }}{{ pkgs_url }}/cfssl/cfssl_linux-amd64', dest: /usr/local/bin/cfssl, mode: '0755' }
+    - { url: '{{ pkgs_site }}{{ pkgs_url }}/cfssl/cfssl-certinfo_linux-amd64', dest: /usr/local/bin/cfssl-certinfo, mode: '0755' }
+    - { url: '{{ pkgs_site }}{{ pkgs_url }}/cfssl/cfssljson_linux-amd64', dest: /usr/local/bin/cfssljson, mode: '0755' }
+    - { url: '{{ pkgs_site }}{{ pkgs_url }}/{{ docker_pkgs }}', dest: /tmp/, mode: '0644' }
+    - { url: '{{ pkgs_site }}{{ pkgs_url }}/{{ etcd_pkgs }}', dest: /tmp/, mode: '0644' }
+    - { url: '{{ pkgs_site }}{{ pkgs_url }}/{{ k8s_version }}/{{ k8s_pkgs }}', dest: /tmp/, mode: '0644' }
 
 - name: 解压程序包
   unarchive:

@@ -1,0 +1,24 @@
+---
+- name: 生成创建证书的脚本
+  template:
+    src: cert.sh.j2
+    dest: /tmp/cert.sh
+    mode: 0755
+
+- name: 执行脚本创建证书
+  shell: /tmp/cert.sh
+
+- name: 生成创建配置文件的脚本
+  template:
+    src: kubeconfig.sh.j2
+    dest: /tmp/kubeconfig.sh
+    mode: 0755
+
+- name: 分发kubectl文件
+  copy:
+    src: /tmp/kubernetes/server/bin/kubectl
+    dest: /usr/bin/
+    mode: 0755
+
+- name: 执行脚本创建配置文件
+  shell: /tmp/kubeconfig.sh
