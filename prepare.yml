@@ -2,5 +2,7 @@
   - hosts: deploy
     gather_facts: false
     become: True
+    vars_files:
+      - group_vars/all.yml
     roles:
       - prepare

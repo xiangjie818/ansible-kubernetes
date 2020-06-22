@@ -8,7 +8,6 @@
     - { url: '{{ pkgs_site }}{{ pkgs_url }}/cfssl/cfssl_linux-amd64', dest: /usr/local/bin/cfssl }
     - { url: '{{ pkgs_site }}{{ pkgs_url }}/cfssl/cfssl-certinfo_linux-amd64', dest: /usr/local/bin/cfssl-certinfo }
     - { url: '{{ pkgs_site }}{{ pkgs_url }}/cfssl/cfssljson_linux-amd64', dest: /usr/local/bin/cfssljson }
-  delegate_to: "{{ ssl_node }}"
 
 - name: 生成创建证书的脚本
   template:

@@ -1,6 +1,4 @@
 ---
-ssl_node: 192.168.3.100
-
 # Harbor
 harbor_url: http://ansible.zxj.com
 harbor_port: 5000
