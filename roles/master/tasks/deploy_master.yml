@@ -1,0 +1,38 @@
+---
+- name: 分发证书
+  copy:
+    src: "{{ item }}"
+    dest: /opt/kubernetes/ssl/
+  with_items:
+    - /tmp/ssl/metrics-server-key.pem
+    - /tmp/ssl/metrics-server.pem
+
+- name: 分发程序文件
+  copy: 
+    src: "/tmp/kubernetes/server/bin/{{ item }}"
+    dest: /opt/kubernetes/bin/
+    mode: 0755
+  with_items:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+    - kubectl
+
+- name: 分发配置文件
+  copy:
+    src: "/tmp/cfg/{{ item }}"
+    dest: /opt/kubernetes/cfg/
+  with_items:
+    - bootstrap.kubeconfig
+    - kube-proxy.kubeconfig
+    - token.csv
+
+- name: 配置kube-apiserver
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: kube-apiserver.j2, dest: /opt/kubernetes/cfg/kube-apiserver }
+    - { src: kube-apiserver.service.j2, dest: /usr/lib/systemd/system/kube-apiserver.service }
+  notify:
+    - Restart kube-apiserver

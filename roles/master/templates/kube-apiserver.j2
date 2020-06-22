@@ -1,0 +1,36 @@
+KUBE_APISERVER_OPTS="--logtostderr=false \
+--v=2 \
+--log-dir=/var/log/kubernetes \
+--etcd-servers={{ etcd_servers }} \
+--bind-address=0.0.0.0 \
+--secure-port=6443 \
+--advertise-address={{ ansible_all_ipv4_addresses[1] }} \
+--allow-privileged=true \
+--service-cluster-ip-range=10.10.0.0/16 \
+--enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota,NodeRestriction  \
+--authorization-mode=RBAC,Node \
+--kubelet-https=true \
+--enable-bootstrap-token-auth=true \
+--token-auth-file=/opt/kubernetes/cfg/token.csv \
+--service-node-port-range=30000-50000 \
+--kubelet-client-certificate=/opt/kubernetes/ssl/server.pem \
+--kubelet-client-key=/opt/kubernetes/ssl/server-key.pem \
+--tls-cert-file=/opt/kubernetes/ssl/server.pem  \
+--tls-private-key-file=/opt/kubernetes/ssl/server-key.pem \
+--client-ca-file=/opt/kubernetes/ssl/ca.pem \
+--service-account-key-file=/opt/kubernetes/ssl/ca-key.pem \
+--etcd-cafile=/opt/kubernetes/ssl/ca.pem \
+--etcd-certfile=/opt/kubernetes/ssl/server.pem \
+--etcd-keyfile=/opt/kubernetes/ssl/server-key.pem \
+--requestheader-client-ca-file=/opt/kubernetes/ssl/ca.pem \
+--requestheader-extra-headers-prefix=X-Remote-Extra- \
+--requestheader-group-headers=X-Remote-Group \
+--requestheader-username-headers=X-Remote-User \
+--proxy-client-cert-file=/opt/kubernetes/ssl/metrics-server.pem \
+--proxy-client-key-file=/opt/kubernetes/ssl/metrics-server-key.pem \
+--runtime-config=api/all=true \
+--audit-log-maxage=30 \
+--audit-log-maxbackup=3 \
+--audit-log-maxsize=100 \
+--audit-log-truncate-enabled=true \
+--audit-log-path=/var/log/kubernetes/k8s-audit.log"
