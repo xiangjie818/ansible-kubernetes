@@ -6,6 +6,8 @@
   with_items:
     - /tmp/ssl/metrics-server-key.pem
     - /tmp/ssl/metrics-server.pem
+    - /tmp/ssl/admin-key.pem
+    - /tmp/ssl/admin.pem
 
 - name: 分发程序文件
   copy: 
@@ -27,6 +29,9 @@
     - kube-proxy.kubeconfig
     - token.csv
 
+- name: 创建kubectl config文件
+  script: /tmp/kubectl_config.sh
+
 - name: 配置kube-apiserver
   template:
     src: "{{ item.src }}"
@@ -36,3 +41,23 @@
     - { src: kube-apiserver.service.j2, dest: /usr/lib/systemd/system/kube-apiserver.service }
   notify:
     - Restart kube-apiserver
+
+- name: 配置controller-manager
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: kube-controller-manager.j2, dest: /opt/kubernetes/cfg/kube-controller-manager }
+    - { src: kube-controller-manager.service.j2, dest: /usr/lib/systemd/system/kube-controller-manager.service }
+  notify:
+    - Restart kube-controller-manager
+
+- name: 配置kube-scheduler
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: kube-scheduler.j2, dest: /opt/kubernetes/cfg/kube-scheduler }
+    - { src: kube-scheduler.service.j2, dest: /usr/lib/systemd/system/kube-scheduler.service }
+  notify:
+    - Restart kube-scheduler

@@ -1,0 +1,16 @@
+KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=true \
+--v=2 \
+--master={{ ansible_all_ipv4_addresses[1] }}:8080 \
+--leader-elect=true \
+--bind-address=0.0.0.0 \
+--service-cluster-ip-range=10.10.0.0/16 \
+--cluster-name=kubernetes \
+--cluster-signing-cert-file=/opt/kubernetes/ssl/ca.pem \
+--cluster-signing-key-file=/opt/kubernetes/ssl/ca-key.pem  \
+--service-account-private-key-file=/opt/kubernetes/ssl/ca-key.pem \
+--experimental-cluster-signing-duration=87600h0m0s \
+--feature-gates=RotateKubeletServerCertificate=true \
+--feature-gates=RotateKubeletClientCertificate=true \
+--allocate-node-cidrs=true \
+--cluster-cidr=10.20.0.0/16 \
+--root-ca-file=/opt/kubernetes/ssl/ca.pem"

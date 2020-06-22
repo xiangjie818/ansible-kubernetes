@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export KUBE_APISERVER="{{ kube_apiserver }}"
+# 创建kubectl kubeconfig文件
+kubectl config set-cluster kubernetes \
+  --certificate-authority=/opt/kubernetes/ssl/ca.pem \
+  --embed-certs=true \
+  --server=${KUBE_APISERVER} \
+
+kubectl config set-credentials admin \
+  --client-certificate=/opt/kubernetes/ssl/admin.pem \
+  --embed-certs=true \
+  --client-key=/opt/kubernetes/ssl/admin-key.pem \
+
+kubectl config set-context default \
+  --cluster=kubernetes \
+  --user=admin \
+
+kubectl config use-context default
