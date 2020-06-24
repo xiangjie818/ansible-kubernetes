@@ -1,3 +1,6 @@
 ---
 - name: Include deploy_master.yml
   include_tasks: deploy_master.yml
+
+- name: Include auto_auth.yml
+  include_tasks: auto_auth.yml

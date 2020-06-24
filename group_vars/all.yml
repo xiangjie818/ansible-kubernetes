@@ -1,14 +1,14 @@
 ---
 # Harbor
-harbor_url: http://ansible.zxj.com
+harbor_url: http://harbor.zxj.com
 harbor_port: 5000
 
 # Kube Apiserver
-kube_apiserver: https://192.168.3.101:6443
+kube_apiserver: https://192.168.2.205:6443
 
 # Packages site
 pkgs_site: http://pkgs.zxj.com
-pkgs_url: /kubernetes/linux-amd64
+pkgs_url: /
 
 # Docker Packages
 docker_pkgs: docker-19.03.9.tar.gz
@@ -22,8 +22,9 @@ k8s_pkgs: kubernetes-server-linux-amd64.tar.gz
 
 
 cluster_ip:
-  - 192.168.3.101
-  - 192.168.3.102
-  - 192.168.3.103
+  - 192.168.2.205
+  - 192.168.2.206
+  - 192.168.2.207
 
-etcd_servers: https://192.168.3.101:2379,https://192.168.3.102:2379,https://192.168.3.103:2379
+etcd_servers: https://192.168.2.205:2379,https://192.168.2.206:2379,https://192.168.2.207:2379
+etcd_cluster: node1.zxj.com=https://192.168.2.205:2380,node2.zxj.com=https://192.168.2.206:2380,node3.zxj.com=https://192.168.2.207:2380

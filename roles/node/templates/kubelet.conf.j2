@@ -1,0 +1,9 @@
+KUBELET_OPTS="--logtostderr=true \
+--v=2 \
+--hostname-override={{ ansible_nodename }} \
+--kubeconfig=/opt/kubernetes/cfg/kubelet.kubeconfig \
+--bootstrap-kubeconfig=/opt/kubernetes/cfg/bootstrap.kubeconfig \
+--config=/opt/kubernetes/cfg/kubelet-config.yml \
+--cert-dir=/opt/kubernetes/ssl \
+--network-plugin=cni \
+--pod-infra-container-image=registry.aliyuncs.com/google_containers/pause:3.2"

@@ -1,0 +1,42 @@
+---
+- name: 分发程序文件
+  copy: 
+    src: "/tmp/kubernetes/server/bin/{{ item }}"
+    dest: /opt/kubernetes/bin/
+    mode: 0755
+  with_items:
+    - kubelet
+    - kube-proxy
+
+- name: 分发配置文件
+  copy: 
+    src: "/tmp/cfg/{{ item }}"
+    dest: /opt/kubernetes/cfg/
+  with_items:
+    - bootstrap.kubeconfig
+    - kube-proxy.kubeconfig
+    - token.csv
+    
+- name: 配置kubelet
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: kubelet.conf.j2, dest: /opt/kubernetes/cfg/kubelet.conf }
+    - { src: kubelet-config.yml.j2, dest: /opt/kubernetes/cfg/kubelet-config.yml }
+    - { src: kubelet.service.j2, dest: /usr/lib/systemd/system/kubelet.service }
+  notify:
+    - Restart kubelet
+
+
+- name: 配置kube-proxy
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: kube-proxy.conf.j2, dest: /opt/kubernetes/cfg/kube-proxy.conf }
+    - { src: kube-proxy-config.yml.j2, dest: /opt/kubernetes/cfg/kube-proxy-config.yml }
+    - { src: kube-proxy.service.j2, dest: /usr/lib/systemd/system/kube-proxy.service }
+  notify:
+    - Restart kube-proxy
+  
