@@ -28,3 +28,5 @@ cluster_ip:
 
 etcd_servers: https://192.168.2.205:2379,https://192.168.2.206:2379,https://192.168.2.207:2379
 etcd_cluster: node1.zxj.com=https://192.168.2.205:2380,node2.zxj.com=https://192.168.2.206:2380,node3.zxj.com=https://192.168.2.207:2380
+cluster_dns: 10.10.0.2
+cluster_domain: cluster.local
