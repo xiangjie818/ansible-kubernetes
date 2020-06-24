@@ -1,0 +1,8 @@
+---
+- name: 分发calico.yaml
+  template:
+    src: calico.yaml.j2
+    dest: /opt/kubernetes/cfg/calico.yaml
+
+- name: 安装网络插件
+  raw: kubectl apply -f /opt/kubernetes/cfg/calico.yaml
