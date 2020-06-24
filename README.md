@@ -1,1 +1,1 @@
-# ansible-zxj
+修改hosts文件，指定每个节点要安装的内容
