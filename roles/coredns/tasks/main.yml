@@ -1,0 +1,8 @@
+---
+- name: 分发coredns.yml
+  template:
+    src: coredns.yml.j2
+    dest: /tmp/coredns.yml
+
+- name: 创建coredns
+  raw: kubectl apply -f /tmp/coredns.yml
