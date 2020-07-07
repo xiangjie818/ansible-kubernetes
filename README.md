@@ -1,9 +1,14 @@
 1、修改hosts文件指定每个节点要安装的内容
+
 2、根据集群状况修改group_vars/all.yml中的变量
 
 ##### 安装步骤
-1）配置证书
+如果需要配置始终同步，可以执行
+```
+ansible-playbook chrony.yml -i hosts
+```
 
+1）配置证书
 ```
 ansible-playbook prepare.yml -i hosts
 ```
