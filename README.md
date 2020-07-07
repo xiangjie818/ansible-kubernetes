@@ -32,3 +32,9 @@ ansible-playbook node.yml -i hosts
 ```
 ansible-playbook network_plugin.yml -i hosts
 ```
+
+7）安装CoreDNS
+```
+ansible-playbook coredns.yml -i hosts
+```
+
