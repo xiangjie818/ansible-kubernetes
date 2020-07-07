@@ -1,0 +1,33 @@
+---
+- name: 安装chrony
+  package:
+    name: chrony
+    state: present
+
+- name: 配置服务端的chrony.conf
+  template:
+    src: chrony-server.conf.j2
+    dest: /etc/chrony.conf
+  when:
+    - role == 'server'
+    - chrony_mode == 'local'
+  notify:
+    - Restart chronyd
+
+- name: 配置客户端的chrony.conf
+  template:
+    src: chrony-clients.conf.j2
+    dest: /etc/chrony.conf
+  when:
+    - role == 'client'
+    - chrony_mode == 'local'
+  notify:
+    - Restart chronyd
+
+- name: 启动chronyd
+  systemd:
+    name: chronyd
+    state: restarted
+    enabled: yes
+  when:
+    - chrony_mode == 'internal'

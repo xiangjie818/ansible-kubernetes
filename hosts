@@ -1,6 +1,11 @@
 [deploy]
 192.168.2.208
 
+[chronys]
+192.168.2.205 role=server
+192.168.2.206 role=client
+192.168.2.207 role=client
+
 [dockers]
 192.168.2.208
 192.168.2.205

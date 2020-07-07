@@ -2,6 +2,7 @@
 # Harbor
 harbor_url: http://harbor.zxj.com
 harbor_port: 5000
+images_dir: harbor.zxj.com:5000/kubernetes
 
 # Kube Apiserver
 kube_apiserver: https://192.168.2.205:6443

@@ -1,6 +1,6 @@
 ---
-  - hosts: masters
+  - hosts: chronys
     gather_facts: false
     become: True
     roles:
-      - network_plugin
+      - chrony

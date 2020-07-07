@@ -1,0 +1,12 @@
+server {{ server }} iburst
+server ntp.aliyun.com iburst
+server ntp1.aliyun.com iburst
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+local stratum 10
+stratumweight 0.05
+noclientlog
+logchange 0.5
+rtcsync
+allow {{ clients_network }}
+logdir /var/log/chrony
