@@ -61,3 +61,14 @@
     - { src: kube-scheduler.service.j2, dest: /usr/lib/systemd/system/kube-scheduler.service }
   notify:
     - Restart kube-scheduler
+
+- name: 启动master相关服务
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  with_items:
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
