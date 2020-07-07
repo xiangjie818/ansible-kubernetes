@@ -6,4 +6,4 @@ KUBELET_OPTS="--logtostderr=true \
 --config=/opt/kubernetes/cfg/kubelet-config.yml \
 --cert-dir=/opt/kubernetes/ssl \
 --network-plugin=cni \
---pod-infra-container-image=registry.aliyuncs.com/google_containers/pause:3.2"
+--pod-infra-container-image={{ images_dir }}/pause:3.2"
