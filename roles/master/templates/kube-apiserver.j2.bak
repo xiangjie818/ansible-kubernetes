@@ -4,7 +4,7 @@ KUBE_APISERVER_OPTS="--logtostderr=false \
 --etcd-servers={{ etcd_servers }} \
 --bind-address=0.0.0.0 \
 --secure-port=6443 \
---advertise-address=HOST_IP \
+--advertise-address={{ ansible_all_ipv4_addresses[1] }} \
 --allow-privileged=true \
 --service-cluster-ip-range=10.10.0.0/16 \
 --enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultTolerationSeconds,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota,NodeRestriction  \

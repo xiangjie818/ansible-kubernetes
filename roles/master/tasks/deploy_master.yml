@@ -39,6 +39,9 @@
   with_items:
     - { src: kube-apiserver.j2, dest: /opt/kubernetes/cfg/kube-apiserver }
     - { src: kube-apiserver.service.j2, dest: /usr/lib/systemd/system/kube-apiserver.service }
+
+- name: 修改kube-apiserver配置文件
+  script: config_apiserver.sh
   notify:
     - Restart kube-apiserver
 

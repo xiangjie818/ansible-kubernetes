@@ -8,12 +8,15 @@
     - etcd
     - etcdctl
 
-- name: 配置etcd
+- name: 分发etcd.yml
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items:
     - { src: etcd.yml.j2, dest: /opt/kubernetes/cfg/etcd.yml }
     - { src: etcd.service.j2, dest: /usr/lib/systemd/system/etcd.service }
+
+- name: 配置etcd.yml
+  script: config_etcd.sh
   notify:
     - Restart etcd
