@@ -8,6 +8,7 @@
   command: "{{ item }}"
   with_items:
     - kubectl create clusterrolebinding kubernetes --clusterrole=cluster-admin --user=kubernetes
+#    - kubectl create clusterrolebinding kubernetes --clusterrole=cluster-admin --user=kubernetes
 #    - kubectl create clusterrolebinding  kubelet-bootstrap --clusterrole=system:node-bootstrapper  --user=kubelet-bootstrap
     - kubectl apply -f /opt/kubernetes/cfg/tls-instructs-csr.yaml
     - kubectl create clusterrolebinding node-client-auto-approve-csr --clusterrole=system:certificates.k8s.io:certificatesigningrequests:nodeclient --user=kubelet-bootstrap
