@@ -12,7 +12,7 @@ KUBE_APISERVER_OPTS="--logtostderr=false \
 --kubelet-https=true \
 --enable-bootstrap-token-auth=true \
 --token-auth-file=/opt/kubernetes/cfg/token.csv \
---service-node-port-range=30000-50000 \
+--service-node-port-range=1-65535 \
 --kubelet-client-certificate=/opt/kubernetes/ssl/server.pem \
 --kubelet-client-key=/opt/kubernetes/ssl/server-key.pem \
 --tls-cert-file=/opt/kubernetes/ssl/server.pem  \
