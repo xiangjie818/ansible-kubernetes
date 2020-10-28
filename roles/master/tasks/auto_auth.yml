@@ -18,3 +18,5 @@
     - kubectl create clusterrolebinding kubelet-bootstrap --clusterrole=system:node-bootstrapper --user=kubelet-bootstrap
   args:
     chdir: /opt/kubernetes/bin/
+  when:
+    - role == 'master'

@@ -3,6 +3,10 @@
   template:
     src: coredns.yml.j2
     dest: /tmp/coredns.yml
+  when:
+    - role == 'master'
 
 - name: 创建coredns
   raw: kubectl apply -f /tmp/coredns.yml
+  when:
+    - role == 'master'
