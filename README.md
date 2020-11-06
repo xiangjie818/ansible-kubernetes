@@ -20,7 +20,7 @@
 ##### 3）根据集群状况修改group_vars/all.yml中的变量
 
 #### 安装步骤
-如果需要配置始终同步，可以执行
+如果需要配置时钟同步，可以执行
 ```
 ansible-playbook chrony.yml -i hosts
 ```
