@@ -15,7 +15,7 @@
 192.168.31.82 pkgs.hy.com
 ```
 
-##### 2）修改ansible-kubernetes项目下的hosts文件，指定个各节点安装内容
+##### 2）修改ansible-kubernetes项目下的hosts文件，指定各节点安装内容
 
 ##### 3）根据集群状况修改group_vars/all.yml中的变量
 
