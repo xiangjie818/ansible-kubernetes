@@ -5,10 +5,10 @@ harbor_port: 5000
 images_dir: node1.huoyin.com:5000/kubernetes
 
 # Kube Apiserver
-kube_apiserver: https://192.168.1.10:6443
+kube_apiserver: https://192.168.0.10:6443
 
 # Packages site
-pkgs_site: http://pkgs.zxj.com
+pkgs_site: http://pkgs.hy.com
 pkgs_url: /kubernetes/linux-amd64
 
 # Docker Packages
@@ -23,11 +23,11 @@ k8s_pkgs: kubernetes-server-linux-amd64.tar.gz
 
 
 cluster_ip:
-  - 192.168.1.10
-  - 192.168.1.11
-  - 192.168.1.12
+  - 192.168.0.10
+  - 192.168.0.11
+  - 192.168.0.12
 
-etcd_servers: https://192.168.1.10:2379,https://192.168.1.11:2379,https://192.168.1.12:2379
-etcd_cluster: node1.zxj.com=https://192.168.1.10:2380,node2.zxj.com=https://192.168.1.11:2380,node3.zxj.com=https://192.168.1.12:2380
+etcd_servers: https://192.168.0.10:2379,https://192.168.0.11:2379,https://192.168.0.12:2379
+etcd_cluster: node1.hy.com=https://192.168.0.10:2380,node2.hy.com=https://192.168.0.11:2380,node3.hy.com=https://192.168.0.12:2380
 cluster_dns: 10.10.0.2
 cluster_domain: cluster.local
