@@ -17,9 +17,9 @@
 192.168.0.12
 
 [masters]
-192.168.0.10 role=master
-192.168.0.11 role=node
-192.168.0.12 role=node
+192.168.0.10 role=master hostname=node1.hy.com
+192.168.0.11 role=node   hostname=node2.hy.com
+192.168.0.12 role=node   hostname=node3.hy.com
 
 [nodes]
 192.168.0.10

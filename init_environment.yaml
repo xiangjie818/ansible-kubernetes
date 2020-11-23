@@ -1,0 +1,45 @@
+---
+  - hosts: masters
+    gather_facts: False
+    become: True
+    vars:
+      testpath: /root/.ssh/id_rsa.pub
+    tasks:
+      - name: 设置主机名
+        raw: hostnamectl set-hostname "{{ hostname }}"
+
+      - name: 修改/etc/hosts文件
+        copy:
+          src: /etc/hosts
+          dest: /etc/hosts
+
+      - name: install ssh key
+        authorized_key:
+          user: root
+          key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+          state: present
+
+      - name: 关闭firewalld
+        systemd:
+          name: firewalld
+          state: stopped
+          enabled: no
+
+      - name: 确认当前selinux状态
+        raw: getenforce
+        register: selinux_result
+
+      - name: 永久关闭selinux
+        lineinfile:
+          dest: /etc/selinux/config
+          state: present
+          regexp: 'SELINUX='
+          line: 'SELINUX=disabled'
+
+      - name: 临时关闭selinux
+        raw: 'setenforce 0'
+        when:
+          - selinux_result.stdout.find('enforcing') != -1
+
+      - name: 关闭swap
+        raw: 'swapoff -a'

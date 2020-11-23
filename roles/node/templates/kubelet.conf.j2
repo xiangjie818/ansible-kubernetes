@@ -6,4 +6,5 @@ KUBELET_OPTS="--logtostderr=true \
 --config=/opt/kubernetes/cfg/kubelet-config.yml \
 --cert-dir=/opt/kubernetes/ssl \
 --network-plugin=cni \
+--volume-plugin-dir=/usr/libexec/kubernetes/kubelet-plugins/volume/exec \
 --pod-infra-container-image={{ images_dir }}/pause:3.2"
