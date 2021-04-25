@@ -1,5 +1,5 @@
 KUBE_SCHEDULER_OPTS="--logtostderr=true \
 --v=2 \
---master=127.0.0.1:8080 \
+--master=127.0.0.1:{{ kube_apiserver_port }} \
 --address=0.0.0.0 \
 --leader-elect"

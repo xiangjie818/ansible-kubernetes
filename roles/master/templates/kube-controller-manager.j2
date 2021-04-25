@@ -1,6 +1,6 @@
 KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=true \
 --v=2 \
---master=127.0.0.1:8080 \
+--master=127.0.0.1:{{ kube_apiserver_port }} \
 --leader-elect=true \
 --bind-address=0.0.0.0 \
 --service-cluster-ip-range=10.10.0.0/16 \

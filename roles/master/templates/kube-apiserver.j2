@@ -3,6 +3,7 @@ KUBE_APISERVER_OPTS="--logtostderr=false \
 --log-dir=/var/log/kubernetes \
 --etcd-servers={{ etcd_servers }} \
 --bind-address=0.0.0.0 \
+--port={{ kube_apiserver_port }} \
 --secure-port=6443 \
 --advertise-address=HOST_IP \
 --allow-privileged=true \
