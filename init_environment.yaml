@@ -13,11 +13,11 @@
           src: /etc/hosts
           dest: /etc/hosts
 
-      - name: install ssh key
-        authorized_key:
-          user: root
-          key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
-          state: present
+#      - name: install ssh key
+#        authorized_key:
+#          user: root
+#          key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+#          state: present
 
       - name: 关闭firewalld
         systemd:
@@ -39,7 +39,7 @@
       - name: 临时关闭selinux
         raw: 'setenforce 0'
         when:
-          - selinux_result.stdout.find('enforcing') != -1
+          - selinux_result.stdout.find('enforcing') == -1
 
       - name: 关闭swap
         raw: 'swapoff -a'

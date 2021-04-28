@@ -25,6 +25,11 @@
 ansible-playbook chrony.yml -i hosts
 ```
 
+##### 节点环境初始化
+```
+ansible-playbook init_environment.yaml -i hosts
+```
+
 ##### 1）配置证书
 ```
 ansible-playbook prepare.yml -i hosts

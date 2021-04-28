@@ -28,3 +28,15 @@
     - { src: docker.service.j2, dest: /usr/lib/systemd/system/docker.service }
   notify:
     - Restart Docker
+
+- name: Docker源认证
+  raw: docker login --username={{ docker_user_name }} --password={{ docker_user_passwd }} {{ images_repo }}
+
+- name: 拉取镜像
+  raw: docker pull {{ images_repo }}/{{ images_namespace }}/{{ item }}
+  with_items: 
+    - pause:3.2
+    - node:v3.18.2
+    - pod2daemon-flexvol:v3.18.2
+    - cni:v3.18.2
+    - kube-controllers:v3.18.2

@@ -28,7 +28,6 @@
   notify:
     - Restart kubelet
 
-
 - name: 配置kube-proxy
   template:
     src: "{{ item.src }}"
@@ -39,4 +38,6 @@
     - { src: kube-proxy.service.j2, dest: /usr/lib/systemd/system/kube-proxy.service }
   notify:
     - Restart kube-proxy
-  
+
+- name: 初始化配置
+  script: init_cluster.sh

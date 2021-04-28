@@ -1,30 +1,30 @@
 [deploy]
-1.0.1.12
+1.0.1.11
 
 [chronys]
-1.0.1.12 role=server
+1.0.1.11 role=server
+1.0.1.12 role=client
 1.0.1.13 role=client
-1.0.1.14 role=client
 
 [dockers]
+1.0.1.11
 1.0.1.12
 1.0.1.13
-1.0.1.14
 
 [etcds]
+1.0.1.11
 1.0.1.12
 1.0.1.13
-1.0.1.14
 
 [masters]
-1.0.1.12 role=master hostname=node1.zxj.com
-1.0.1.13 role=node   hostname=node2.zxj.com
-1.0.1.14 role=node   hostname=node3.zxj.com
+1.0.1.11 role=master hostname=node1.zxj.com
+1.0.1.12 role=node   hostname=node2.zxj.com
+1.0.1.13 role=node   hostname=node3.zxj.com
 
 [nodes]
+1.0.1.11
 1.0.1.12
 1.0.1.13
-1.0.1.14
 
 [all:vars]
 ansible_ssh_user=root

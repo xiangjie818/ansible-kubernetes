@@ -2,11 +2,12 @@
 # Harbor
 # harbor_url: http://node1.huoyin.com
 # harbor_port: 5000
-images_dir: registry.cn-beijing.aliyuncs.com/zhaoxiangjie
+images_repo: registry.cn-beijing.aliyuncs.com
+images_namespace: zhaoxiangjie
 
 # Kube Apiserver
-kube_apiserver: https://1.0.1.12:6443
-kube_apiserver_port: 9090
+kube_apiserver: https://1.0.1.11:6443
+kube_apiserver_port: 8080
 
 # Packages site
 pkgs_site: http://pkgs.zxj.com
@@ -24,11 +25,11 @@ k8s_pkgs: kubernetes-server-linux-amd64.tar.gz
 
 
 cluster_ip:
+  - 1.0.1.11
   - 1.0.1.12
   - 1.0.1.13
-  - 1.0.1.14
 
-etcd_servers: https://1.0.1.12:2379,https://1.0.1.13:2379,https://1.0.1.14:2379
-etcd_cluster: node1.zxj.com=https://1.0.1.12:2380,node2.zxj.com=https://1.0.1.13:2380,node3.zxj.com=https://1.0.1.14:2380
+etcd_servers: https://1.0.1.11:2379,https://1.0.1.12:2379,https://1.0.1.13:2379
+etcd_cluster: node1.zxj.com=https://1.0.1.11:2380,node2.zxj.com=https://1.0.1.12:2380,node3.zxj.com=https://1.0.1.13:2380
 cluster_dns: 10.10.0.2
 cluster_domain: cluster.local
