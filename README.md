@@ -3,31 +3,61 @@
 ##### 1）修改/etc/hosts文件
 
 ```
-# k8s
-192.168.0.10  node1.hy.com
-192.168.0.11  node2.hy.com
-192.168.0.12  node3.hy.com
-
-# harbor
-192.168.31.191 node1.huoyin.com
-
-# pkgs
-192.168.31.82 pkgs.hy.com
+# cat /etc/hosts
+1.0.1.1   pkgs.zxj.com
+1.0.1.11  node1.zxj.com  node1
+1.0.1.12  node2.zxj.com  node2
+1.0.1.13  node3.zxj.com  node3
 ```
 
 ##### 2）修改ansible-kubernetes项目下的hosts文件，指定各节点安装内容
 
+```
+[deploy]
+1.0.1.11
+
+[chronys]
+1.0.1.11 role=server
+1.0.1.12 role=client
+1.0.1.13 role=client
+
+[dockers]
+1.0.1.11
+1.0.1.12
+1.0.1.13
+
+[etcds]
+1.0.1.11
+1.0.1.12
+1.0.1.13
+
+[masters]
+1.0.1.11 role=master hostname=node1.zxj.com
+1.0.1.12 role=node   hostname=node2.zxj.com
+1.0.1.13 role=node   hostname=node3.zxj.com
+
+[nodes]
+1.0.1.11
+1.0.1.12
+1.0.1.13
+
+[all:vars]
+ansible_ssh_user=root
+ansible_ssh_pass=123456
+```
+
 ##### 3）根据集群状况修改group_vars/all.yml中的变量
 
 #### 安装步骤
-如果需要配置时钟同步，可以执行
-```
-ansible-playbook chrony.yml -i hosts
-```
 
 ##### 节点环境初始化
 ```
 ansible-playbook init_environment.yaml -i hosts
+```
+
+如果需要配置时钟同步，可以执行
+```
+ansible-playbook chrony.yml -i hosts
 ```
 
 ##### 1）配置证书
